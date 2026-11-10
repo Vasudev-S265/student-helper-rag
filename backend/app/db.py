@@ -40,8 +40,17 @@ def log_interaction(session_id: str | None, question:str, answer:str, sources:li
         )
     return cur.lastrowid
 
+def log_feedback(interaction_id:int, rating:int , comment:str | None)->bool:
+    with get_conn() as conn:
+        exists=conn.execute(
+            "SELECT 1 FROM interactions WHERE id=?", (interaction_id,)
+        ).fetchone()
 
-if __name__=="__main__":
-    init_db()
-    new_id=log_interaction("test_session", "test question", "test answer", [{"source": "x.pdf", "page": 1}])
-    print(f"Logged interaction with id: {new_id}")
+        if not exists:
+            return False
+
+        conn.execute(
+            "INSERT INTO feedback (interaction_id, rating, comment ) VALUES(?, ?, ?)", (interaction_id, rating, comment),
+        )
+
+    return True
