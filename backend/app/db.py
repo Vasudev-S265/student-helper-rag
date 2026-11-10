@@ -18,6 +18,7 @@ def init_db():
                 question TEXT NOT NULL,
                 answer TEXT NOT NULL,
                 sources_json TEXT NOT NULL,
+                model TEXT,
                 created_at TEXT DEFAULT CURRENT_TIMESTAMP
                 );
 
@@ -32,11 +33,11 @@ def init_db():
                 """)
 
 
-def log_interaction(session_id: str | None, question:str, answer:str, sources:list[dict])->int:
+def log_interaction(session_id: str | None, question:str, answer:str, sources:list[dict], model:str)->int:
     with get_conn() as conn:
         cur=conn.execute(
-            "INSERT INTO interactions (session_id, question, answer, sources_json) VALUES (?, ?, ?, ?)", 
-            (session_id, question, answer, json.dumps(sources))
+            "INSERT INTO interactions (session_id, question, answer, sources_json, model) VALUES (?, ?, ?, ?, ?)", 
+            (session_id, question, answer, json.dumps(sources), model),
         )
     return cur.lastrowid
 
