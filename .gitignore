@@ -2,3 +2,4 @@
 __pycache__/
 .env
 data/vector_store/
+data/feedback.db
