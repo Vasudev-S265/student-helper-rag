@@ -3,6 +3,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 from app.rag import answer, LLMBusyError
 from app.db import init_db, log_interaction, log_feedback
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI(title="Student Helper RAG")
@@ -17,6 +18,12 @@ class FeedbackRequest(BaseModel):
     rating:Literal[1, -1]
     comment:str | None = Field(default=None, max_length=1000)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
     
 @app.get("/health")
 def health():
