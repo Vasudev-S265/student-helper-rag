@@ -15,7 +15,7 @@ class Askrequest(BaseModel):
 
 class FeedbackRequest(BaseModel):
     interaction_id:int
-    rating:Literal[1, -1]
+    helpful: bool
     comment:str | None = Field(default=None, max_length=1000)
 
 app.add_middleware(
@@ -46,7 +46,7 @@ def ask(req: Askrequest):
        
 @app.post("/feedback")
 def feeback(req:FeedbackRequest):
-    ok=log_feedback(req.interaction_id, req.rating, req.comment)
+    ok=log_feedback(req.interaction_id, req.helpful, req.comment)
     if not ok:
         raise HTTPException(status_code=404, detail="Unknown interaction_id")
 
