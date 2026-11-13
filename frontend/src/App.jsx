@@ -6,5 +6,5 @@ export default function App(){
   const[screen, setScreen]=useState("Home")
 
   return screen==="Home"?<Home onStart={()=>setScreen("chat")}/>
-  :<Chat/>
+  :<Chat onBack={()=> setScreen("Home")}/>
 }

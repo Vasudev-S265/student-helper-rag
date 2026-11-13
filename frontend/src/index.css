@@ -142,3 +142,27 @@ body {
 
 .feedback-note { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .error-text { color: var(--danger); }
+
+
+.chat-header{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 4px 12px;
+}
+
+.chat-title{color: var(--muted); font-size: 14px;}
+
+.back-btn{
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--text);
+  font: inherit;
+  padding: 6px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.back-btn:hover{border-color: var(--accent);}

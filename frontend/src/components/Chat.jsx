@@ -16,7 +16,7 @@ function getSessionId(){
 }
 
 
-export default function Chat(){
+export default function Chat({onBack}){
     const[messages, setMessages]=useState([])
     const[input, setInput]=useState("")
     const[status, setStatus]=useState("idle")
@@ -58,6 +58,10 @@ export default function Chat(){
 
     return(
         <div className="chat">
+            <div className="chat-header">
+                <button className="back-btn" onClick={onBack}> Back </button>
+                <span className="chat-title">Student Helper</span>
+            </div>
             <div className="messages">
                 {messages.map((m, i) => <Message key={i} message={m} />)}
 
