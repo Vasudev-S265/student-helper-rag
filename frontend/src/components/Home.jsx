@@ -1,10 +1,33 @@
-export default function Home({onStart}){
-    return(
-        <div>
-            <h1>AI Mentor</h1>
-            <p>Ask questions about your course materials and get the answers within the sources.</p>
-            <p>Your questions and feedback are used anonymously to improve this tool.</p>
-            <button onClick={onStart}>Start Asking</button>
+export default function Home({ onStart }) {
+  return (
+    <div className="home">
+      <div className="glass hero">
+        <span className="badge">● online</span>
+        <h1>Student Helper</h1>
+        <p className="lead">
+          Ask questions about your course material and get answers with sources.
+        </p>
+        <button className="cta" onClick={onStart}>Start asking →</button>
+        <p className="privacy">
+          Questions and feedback are recorded anonymously to improve this tool.
+          Please don't include your name or personal details.
+        </p>
+      </div>
+
+      <div className="features">
+        <div className="glass card">
+          <h3>Grounded</h3>
+          <p>Answers come from your course PDFs, not from guesswork.</p>
         </div>
-    );
+        <div className="glass card">
+          <h3>Cited</h3>
+          <p>Every answer shows which file and page it came from.</p>
+        </div>
+        <div className="glass card">
+          <h3>Improving</h3>
+          <p>Your thumbs up or down helps make it better.</p>
+        </div>
+      </div>
+    </div>
+  );
 }
